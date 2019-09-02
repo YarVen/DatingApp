@@ -1,7 +1,8 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { BsDropdownModule } from 'ngx-bootstrap';
 
 // import { AppRoutingModule} from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +11,13 @@ import { AuthService } from './_services/auth.service';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
+
+export class CustomHammerConfig extends HammerGestureConfig {
+   overrides = {
+       pinch: { enable: false },
+       rotate: { enable: false }
+   };
+}
 
 @NgModule({
    declarations: [
@@ -22,11 +30,13 @@ import { ErrorInterceptorProvider } from './_services/error.interceptor';
       BrowserModule,
       // AppRoutingModule,
       HttpClientModule,
-      FormsModule
+      FormsModule,
+      BsDropdownModule.forRoot()
    ],
    providers: [
       ErrorInterceptorProvider,
-      AuthService
+      AuthService,
+      { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
    ],
    bootstrap: [
       AppComponent
