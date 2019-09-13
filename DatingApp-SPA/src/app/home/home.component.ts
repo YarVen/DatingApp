@@ -21,12 +21,4 @@ export class HomeComponent implements OnInit {
   cancelRegisterMode(registerMode: boolean) {
     this.registerMode = registerMode;
   }
-
-  // getValues() {
-  //   this.http.get('http://localhost:5000/api/values').subscribe(response => {
-  //   this.values = response;
-  //   }, error => {
-  //     console.log(error);
-  //   });
-  // }
 }
